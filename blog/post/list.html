@@ -1,0 +1,85 @@
+{% extends "blog/base.html" %}
+
+{% block title %}MCC_BLOG{% endblock %}
+
+
+
+
+{% block content %}
+
+    <div id="slideshow">
+        <a href="/static/img/parade.jpg"><img class="slide" src="/static/img/parade.jpg" alt="Principals Parade"></a>
+        <a href="/static/img/block.jpg"><img class="slide" src="/static/img/block.jpg" alt="Night view of academic block" ></a>
+        <a href="/static/img/dayblock.jpg"><img class="slide" src="/static/img/dayblock.jpg" alt="Front view of academic block" ></a>
+        <a href="/static/img/fh.jpg"><img class="slide" src="/static/img/fh.jpg" alt="Fazlul Haque House" ></a>
+        <a href="/static/img/sh.jpg"><img class="slide" src="/static/img/sh.jpg" alt="Suhrawardy House" ></a>  
+        <a href="/static/img/nh.jpg"><img class="slide" src="/static/img/nh.jpg" alt="Nazrul House" ></a>
+        <a href="/static/img/metal.jpg"><img class="slide" src="/static/img/metal.jpg" alt="MCC" ></a>
+        <a href="/static/img/road.jpg"><img class="slide" src="/static/img/road.jpg" alt="College Road" ></a>
+        <a href="/static/img/games.jpg"><img class="slide" src="/static/img/games.jpg" alt="Games Time" ></a>
+    </div>
+
+
+    <div id="postList">
+        {% if tag %}
+            <h2>
+                Posts tagged with "{{ tag.name }}"
+            </h2>
+        {% endif %}
+
+        <p class = "tags">
+            
+            {% for tag in post.tags.all %}
+            
+            <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                {{ tag.name }}                
+            </a>
+            
+            {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    
+            {% for post in posts %}
+                <div class="postDiv">
+                    <h1 class="postTitle">
+                        <a href="{{ post.get_absolute_url }}" id="postTitleHome">
+                            {{ post.title }}
+                        </a>      
+                    </h1>
+
+                    <!--<h4> <p class = "tags">Tags: {{ post.tags.all|join:", " }}</p> </h4>-->
+
+                    <p class="date">
+                        Published {{ post.publish }}
+                    </p>
+                
+                    <p id="postBody">{{ post.body|truncatewords:8|linebreaks }}</p>
+                </div>
+        {% endfor %}
+   
+    {% include "pagination.html" with page=posts %}
+    </div>
+    
+    <script type="text/javascript">
+
+        // Original JavaScript code by Chirp Internet: www.chirp.com.au
+        // Please acknowledge use of this code by including this header.
+      
+        window.addEventListener("DOMContentLoaded", function(e) {
+      
+          var stage = document.getElementById("slideshow");
+          var fadeComplete = function(e) { stage.appendChild(arr[0]); };
+          var arr = stage.getElementsByTagName("a");
+          for(var i=0; i < arr.length; i++) {
+            arr[i].addEventListener("animationend", fadeComplete, false);
+          }
+      
+        }, false);
+      
+      </script>
+      
+
+
+
+
+{% endblock %}

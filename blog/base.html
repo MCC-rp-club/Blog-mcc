@@ -1,0 +1,78 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+<!--
+    Developed by:
+
+    Syeed Mohammad Ismail
+    Cadet NO : 2779
+    52nd Batch
+    Mirzapur Cadet College
+    Reach Ismail at nabilsyeed79@gmail.com
+
+    H.A.M. Fahim Sarker
+    Cadet No : 2805
+    52nd Batch
+    Mirzapur Cadet College
+    Reach Fahim at: fahim.sarker.590@gmail.com
+   
+-->
+
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        
+        <meta charset="uft-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Caveat+Brush&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two&display=swap" rel="stylesheet">
+   
+    </head>
+    <body>
+        
+        <div id="navbar">
+                <a href="https://mcc.army.mil.bd/" id="logo"> <img src="/static/img/logo.png" height="70px" width="70px">    <u >Mirzapur Cadet College</u></a>
+                
+                <div id="navbar-right">
+                  <a class="active" href="http://127.0.0.1:8000/blog/?page=1#home">Home</a>
+                  <a href="#contact">Contact</a>
+                  <a href="#makers">About</a>
+                </div>
+        </div>
+
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        {% include "footer.html" %}
+        
+        <script>
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+                    document.getElementById("navbar").style.padding = "10px 20px";
+                    document.getElementById("logo").style.fontSize = "25px";
+                    
+                }
+                else {
+                    document.getElementById("navbar").style.padding = "40px 10px";
+                    document.getElementById("logo").style.fontSize = "35px";
+                }
+            }
+        </script>
+    </body>
+
+    <!-- Our page is still under development. We are working for the android view and soon will be available. 
+         Any suggestion will be appriciated.
+
+         Let's Roll! 😎 
+    -->
+
+</html>
+
